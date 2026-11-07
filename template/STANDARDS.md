@@ -34,6 +34,7 @@ End every response with:
 - **Clean as you go.** When something is replaced, delete the old code, config, secrets and files in the same change.
 - **Platform over code.** Don't rebuild auth, rate limiting, storage or schedulers that the platform already provides.
 - **Can't change a platform setting yourself? Write the steps for the human.** Never write workaround scripts or home-made substitutes.
+- **Ignore `.DS_Store`.** Never read, edit, commit or mention it; keep it in `.gitignore`.
 
 ## Stack defaults
 
