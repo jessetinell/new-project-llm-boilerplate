@@ -15,4 +15,4 @@
 
 ## Deploy
 
-See `HOSTING.md`.
+See `docs/HOSTING.md`.

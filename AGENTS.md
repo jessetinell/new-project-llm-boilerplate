@@ -14,20 +14,24 @@ Don't mix the two: `template/AGENTS.md` and `template/CLAUDE.md` belong to futur
 | File | Role in a new project |
 |---|---|
 | `START_HERE.md` | Bootstrap playbook for the agent; deleted once the project is set up |
-| `BRIEF.md` | What to build; the agent writes it from the user's idea |
-| `STANDARDS.md` | Shared philosophy, stack, auth, UI and docs rules; identical in every project |
-| `COST_CAUTIONS.md` | Mandatory runaway-cost rules (fixed part) + project limits (placeholder part); never deleted |
-| `AGENTS.md`, `CLAUDE.md` | The project's agent guide; `CLAUDE.md` loads AGENTS, STANDARDS and COST_CAUTIONS |
-| `README.md`, `HOSTING.md` | Templates the agent fills |
+| `AGENTS.md` | The project's agent guide (cross-tool standard) |
+| `CLAUDE.md` | Shim for Claude Code: imports `AGENTS.md`, `docs/STANDARDS.md` and `docs/COST_CAUTIONS.md` |
+| `README.md` | Template the agent fills at setup |
+| `docs/BRIEF.md` | What to build; the agent writes it from the user's idea |
+| `docs/STANDARDS.md` | Shared philosophy, stack, deploy, auth, UI and docs rules; identical in every project |
+| `docs/COST_CAUTIONS.md` | Mandatory runaway-cost rules (fixed part) + project limits (placeholder part); never deleted |
+| `docs/HOSTING.md` | Template the agent fills at the first deploy |
 
 ## Rules for changes
 
 - **Markdown only.** No code, scripts or config in this repo beyond `.gitattributes` and `.gitignore` (shell one-liners inside docs are fine).
 - **Everything in `template/` stays generic:** no project names, URLs, IDs or account details. Use `{{placeholders}}` for anything project-specific.
+- **Tool-neutral:** write for any coding agent (Codex, Claude Code, others). `CLAUDE.md` is the only tool-specific file; no tool folders like `.claude/`.
+- **Minimal project root:** only `README.md`, `AGENTS.md`, `CLAUDE.md` and `START_HERE.md`; every other template doc goes in `template/docs/`.
 - **Never weaken** the cost-safety or security rules. Add to them, clarify them, keep them brief.
 - **Brief beats complete.** Every line must change what an agent does; cut anything that doesn't.
 - **Keep the flow in sync:** the bootstrap prompt and copy command in `README.md`, and the steps in `template/START_HERE.md`, must agree.
-- **The philosophy applies here too:** read `template/STANDARDS.md` before editing.
+- **The philosophy applies here too:** read `template/docs/STANDARDS.md` before editing.
 - **Ignore `.DS_Store`** anywhere in this repo: never read, edit, commit or mention it.
 - **Where improvements come from:** lessons from real projects. Generalize them (strip specifics), then put each in the one file it belongs to; don't repeat a rule across files.
 

@@ -10,7 +10,7 @@ Open `claude` or `codex` in an **empty folder** and paste:
 
 Before it's on GitHub, give a local path instead: `…from ~/<path-to>/boilerplate: copy the contents of its template/ folder here…`
 
-The agent copies `template/`, writes the brief from your idea, asks only what's blocking, and sets up the project.
+The agent copies `template/`, writes the brief from your idea, asks only what's blocking, and gets the project running locally. When you're ready, say **deploy it**: the agent sets up hosting, deploys, and fills in `docs/HOSTING.md`.
 
 Copy command (for the agent, or by hand):
 

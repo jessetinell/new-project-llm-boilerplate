@@ -1,10 +1,10 @@
 # {{project name}}: agent guide
 
-**Before any work, read `STANDARDS.md` (philosophy, stack, security, UI) and `COST_CAUTIONS.md` (mandatory on every change: nothing may loop or run up a bill).** Rules below are specific to this project and win on conflict, except they can never weaken cost safety.
+**Before any work, read `docs/STANDARDS.md` (philosophy, stack, security, UI) and `docs/COST_CAUTIONS.md` (mandatory on every change: nothing may loop or run up a bill).** Rules below are specific to this project and win on conflict, except they can never weaken cost safety.
 
 ## What this is
 
-{{one paragraph from BRIEF.md: what, for whom, why}}
+{{one paragraph from docs/BRIEF.md: what, for whom, why}}
 
 ## Stack
 

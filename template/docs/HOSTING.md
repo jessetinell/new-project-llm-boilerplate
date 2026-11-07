@@ -1,5 +1,7 @@
 # Hosting
 
+<!-- Not deployed yet. Filled at the first deploy: see docs/STANDARDS.md → Local first, deploy on request. Remove this line then. -->
+
 ## Links
 
 | | |

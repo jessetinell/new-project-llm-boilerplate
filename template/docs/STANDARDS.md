@@ -1,6 +1,6 @@
 # Standards
 
-Shared defaults for every project. They apply unless `BRIEF.md` or the user says otherwise. Don't edit per project: put project rules in `AGENTS.md`.
+Shared defaults for every project. They apply unless `docs/BRIEF.md` or the user says otherwise. Don't edit per project: put project rules in `AGENTS.md`.
 
 ## Philosophy
 
@@ -44,16 +44,28 @@ End every response with:
 - **AI:** the provider's official SDK and its current best model. For agents, prefer hosted agent infrastructure and skills over hand-written agent loops.
 - **Tests:** the runtime's built-in test runner. No framework unless it's needed.
 
-## Hosting doc
+## Local first, deploy on request
 
-Every project gets a **`HOSTING.md`**, created as soon as anything is hosted, for whichever platform the project uses. Keep it brief:
+Every project starts local: get it running on this machine fast, with no hosting, deploys or cloud resources. It goes live only when the user says "deploy"; then you do the whole deploy.
 
-1. **Links:** a table with a direct link to every service and resource: live app, hosting project, database, storage, auth, AI provider keys and spend limits, monitoring.
-2. **One-time setup:** numbered steps per service for anything the human must do in a dashboard.
-3. **Deploy:** the exact commands.
-4. **Local:** the exact commands.
+**Local:**
 
-Update it whenever a service, URL or setup step changes.
+- **Build on the production stack from day one,** in its local mode (e.g. `wrangler dev` with local bindings), so deploying is configuration, not a port.
+- One command each: setup (local data and demo data), dev, test, deploy.
+- Ship realistic **demo data** with relative dates, so the app can always be evaluated.
+- Schema changes are numbered migrations: apply locally first, remotely only at deploy.
+
+**First deploy:** the user saying "deploy" approves every step below (never anything destructive), so don't ask again step by step. Batch what only the human can do (login, secret values, dashboard limits, plan upgrades) into as few messages as possible, with exact commands or clicks.
+
+1. **Access:** the platform CLI is installed and logged in (`wrangler whoami`, `vercel whoami`).
+2. **Resources:** create with the CLI whatever the app uses locally (project, database, storage, queues, crons) and wire it into config.
+3. **Secrets:** into the platform's secret store. Generate random ones straight into it; for keys the user holds, give them the command.
+4. **Lock it down:** apply Auth & secrets; if `docs/BRIEF.md` says private, it's behind access control from the first deploy.
+5. **Cost:** nothing paid goes live until the dashboard ceilings in `docs/COST_CAUTIONS.md` are set and its worst case is current.
+6. **Ship:** remote migrations, deploy, then check the main flow on the live URL. Use the platform's default URL; a custom domain only if asked.
+7. **Record it:** fill `docs/HOSTING.md` (a link to every service and dashboard, numbered one-time human steps, exact commands), the deploy command in `AGENTS.md`, and the hard ceilings in `docs/COST_CAUTIONS.md`. Report the live URL and anything left for the human.
+
+**Later deploys:** only when the user asks, with the commands in `docs/HOSTING.md`. Update `docs/HOSTING.md` whenever a service, URL or setup step changes.
 
 ## Auth & secrets
 
@@ -65,7 +77,7 @@ Update it whenever a service, URL or setup step changes.
 
 ## Cost safety
 
-**Mandatory.** Every project has a `COST_CAUTIONS.md`, and every agent follows it on every change: no code may ever loop, fan out or retry its way into a large cloud or AI bill. It holds the backstory, the hard rules, the pre-change check, loop patterns and required limits, plus this project's worst case. Never delete it; "no paid usage yet" is a valid entry.
+**Mandatory.** Every project has a `docs/COST_CAUTIONS.md`, and every agent follows it on every change: no code may ever loop, fan out or retry its way into a large cloud or AI bill. It holds the backstory, the hard rules, the pre-change check, loop patterns and required limits, plus this project's worst case. Never delete it; "no paid usage yet" is a valid entry.
 
 ## UI standards
 
@@ -111,19 +123,13 @@ Text budget per page:
 
 ## Docs every project keeps
 
+Keep the root to what tools and people look for there (`README.md`, `AGENTS.md`, `CLAUDE.md`); every other doc goes in `docs/`. Write docs for any coding agent, not one tool.
+
 | File | Content |
 |---|---|
-| `BRIEF.md` | What to build, in the user's words (the starting input) |
 | `README.md` | What it is, folder layout, local and deploy commands |
 | `AGENTS.md` | Project rules for coding agents; points to this file |
-| `CLAUDE.md` | `@AGENTS.md` + `@STANDARDS.md` + `@COST_CAUTIONS.md`, so Claude Code always loads them |
-| `HOSTING.md` | Links, one-time setup, deploy, local (see above) |
-| `COST_CAUTIONS.md` | **Always.** Runaway-cost rules for agents, plus this project's limits and worst case |
-| `API.md` | If there's an API: endpoint, auth, limits, operations, one example |
-
-## Local dev & deploy
-
-- One command each: setup (local data and demo data), dev, test, deploy.
-- Ship realistic **demo data** with relative dates, so the app can always be evaluated.
-- Schema changes are numbered migrations: apply locally first, remotely only at deploy.
-- Production deploys and remote changes need the user's explicit approval.
+| `CLAUDE.md` | Imports `AGENTS.md` and the two mandatory docs, because Claude Code doesn't read `AGENTS.md` |
+| `docs/BRIEF.md` | What to build, in the user's words (the starting input) |
+| `docs/COST_CAUTIONS.md` | **Always.** Runaway-cost rules for agents, plus this project's limits and worst case |
+| `docs/HOSTING.md` | Links, one-time setup, deploy, local; filled at the first deploy |

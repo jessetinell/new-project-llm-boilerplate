@@ -2,27 +2,27 @@
 
 You are in a new project folder, copied from the `template/` folder of the boilerplate repo. Follow these steps to set the project up, then delete this file.
 
+**Local first.** Get the app running on this machine fast. No deploys, hosting logins or cloud resources now: the project goes live only when the user says "deploy", following `docs/STANDARDS.md` → Local first, deploy on request.
+
 ## Setup steps
 
 1. **Check the copy:** this folder should contain these template files (not the boilerplate repo's own `README.md`, `AGENTS.md` and `template/` folder) and a fresh `git init`.
-2. **Read** `STANDARDS.md` and `COST_CAUTIONS.md` fully.
-3. **Write `BRIEF.md`** from the user's idea. Keep their words; leave unknown sections out rather than guessing.
-4. **Ask only what's blocking** (at most a few questions, in one go). Use the defaults in `STANDARDS.md` for everything else.
-5. **Fill the placeholders** (`{{…}}`) in `AGENTS.md`, `README.md`, `HOSTING.md` and the project section of `COST_CAUTIONS.md`. Create `API.md` only if the project has an API (see `STANDARDS.md`). Never delete `COST_CAUTIONS.md`.
-6. **Scaffold the app** with the default stack (or the user's override), smallest working version first.
-7. **Check:** `grep -rn "{{" *.md` returns nothing; the app runs locally.
-8. **Delete this file.** Then summarize what was set up, what's next, and anything the human must do in a dashboard (list it in `HOSTING.md`).
-
-Never deploy or change anything live without asking.
+2. **Read** `docs/STANDARDS.md` and `docs/COST_CAUTIONS.md` fully.
+3. **Write `docs/BRIEF.md`** from the user's idea. Keep their words; leave unknown sections out rather than guessing.
+4. **Ask only what's blocking** (at most a few questions, in one go; hosting questions wait until deploy). Use the defaults in `docs/STANDARDS.md` for everything else.
+5. **Fill the placeholders** (`{{…}}`) in `AGENTS.md`, `README.md` and the project section of `docs/COST_CAUTIONS.md`; write "not deployed yet" for anything that only exists once hosted. Leave `docs/HOSTING.md` for the first deploy. Never delete `docs/COST_CAUTIONS.md`.
+6. **Scaffold the app** with the default stack (or the user's override), smallest working version first, and run it locally.
+7. **Check:** `grep -ln "{{" *.md docs/*.md` lists only this file and `docs/HOSTING.md`; the app runs locally with the dev command.
+8. **Delete this file.** Then tell the user how to run it, anything they must do first (e.g. create an AI key with a spend limit), what's next, and that saying "deploy" takes it live.
 
 ## What's here
 
 | File | Purpose | Edit? |
 |---|---|---|
-| `BRIEF.md` | What to build | Agent writes from the user's idea |
-| `STANDARDS.md` | Shared philosophy, stack, security and UI rules | Never per project; improve it in the boilerplate repo instead |
-| `COST_CAUTIONS.md` | **Mandatory.** Runaway-cost rules (fixed) + this project's limits and worst case (agent fills) | Never delete |
-| `AGENTS.md` | Project rules for coding agents; read by Codex automatically | Agent fills, then grows with the project |
-| `CLAUDE.md` | Makes Claude Code load AGENTS.md, STANDARDS.md and COST_CAUTIONS.md | No |
+| `AGENTS.md` | Project rules for coding agents; the cross-tool standard most agents read automatically | Agent fills, then grows with the project |
+| `CLAUDE.md` | Shim: Claude Code doesn't read `AGENTS.md`, so this imports it plus the two mandatory docs | No |
 | `README.md` | Project readme | Agent fills |
-| `HOSTING.md` | Links, one-time setup, deploy, local | Agent fills when hosting starts |
+| `docs/BRIEF.md` | What to build | Agent writes from the user's idea |
+| `docs/STANDARDS.md` | Shared philosophy, stack, security and UI rules | Never per project; improve it in the boilerplate repo instead |
+| `docs/COST_CAUTIONS.md` | **Mandatory.** Runaway-cost rules (fixed) + this project's limits and worst case (agent fills) | Never delete |
+| `docs/HOSTING.md` | Links, one-time setup, deploy, local | Agent fills at the first deploy |
