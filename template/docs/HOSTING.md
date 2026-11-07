@@ -8,6 +8,7 @@
 |---|---|
 | App | {{live URL}} |
 | Hosting project | {{Cloudflare / Vercel dashboard link}} |
+| Internal hosting dashboard | https://cf.jessetinell.com/ |
 | Database | {{link}} |
 | Storage | {{link}} |
 | Auth | {{link}} |

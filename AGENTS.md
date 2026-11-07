@@ -25,7 +25,7 @@ Don't mix the two: `template/AGENTS.md` and `template/CLAUDE.md` belong to futur
 ## Rules for changes
 
 - **Markdown only.** No code, scripts or config in this repo beyond `.gitattributes` and `.gitignore` (shell one-liners inside docs are fine).
-- **Everything in `template/` stays generic:** no project names, URLs, IDs or account details. Use `{{placeholders}}` for anything project-specific.
+- **Everything in `template/` stays generic:** no project names, URLs, IDs or account details. Use `{{placeholders}}` for anything project-specific. Exception: shared internal links that are the same for every project (e.g. the internal hosting dashboard in `docs/HOSTING.md`).
 - **Tool-neutral:** write for any coding agent (Codex, Claude Code, others). `CLAUDE.md` is the only tool-specific file; no tool folders like `.claude/`.
 - **Minimal project root:** only `README.md`, `AGENTS.md`, `CLAUDE.md` and `START_HERE.md`; every other template doc goes in `template/docs/`.
 - **Never weaken** the cost-safety or security rules. Add to them, clarify them, keep them brief.
