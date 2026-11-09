@@ -88,4 +88,4 @@ Tested: {{which tests cover the limits}}
 ### Hard ceilings (dashboards)
 
 1. **{{AI provider}} spend limit:** {{amount}} on a dedicated workspace. {{link}}
-2. **{{Hosting}} billing alerts:** {{threshold}}. {{link}}
+2. **Cloudflare billing alerts:** {{threshold}}. https://dash.cloudflare.com/{{account_id}}/{{path}}

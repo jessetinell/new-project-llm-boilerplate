@@ -9,9 +9,9 @@ You are in a new project folder, copied from the `template/` folder of the boile
 1. **Check the copy:** this folder should contain these template files (not the boilerplate repo's own `README.md`, `AGENTS.md` and `template/` folder) and a fresh `git init`.
 2. **Read** `docs/STANDARDS.md` and `docs/COST_CAUTIONS.md` fully.
 3. **Write `docs/BRIEF.md`** from the user's idea. Keep their words; leave unknown sections out rather than guessing.
-4. **Ask only what's blocking** (at most a few questions, in one go; hosting questions wait until deploy). Use the defaults in `docs/STANDARDS.md` for everything else.
+4. **Ask only what's blocking** (at most a few questions, in one go; hosting questions wait until deploy). If it's hosted on Cloudflare, run `wrangler whoami`; if it lists more than one account, also ask which one it deploys to. Use the defaults in `docs/STANDARDS.md` for everything else.
 5. **Fill the placeholders** (`{{…}}`) in `AGENTS.md`, `README.md` and the project section of `docs/COST_CAUTIONS.md`; write "not deployed yet" for anything that only exists once hosted. Leave `docs/HOSTING.md` for the first deploy. Never delete `docs/COST_CAUTIONS.md`.
-6. **Scaffold the app** with the default stack (or the user's override), smallest working version first, and run it locally.
+6. **Scaffold the app** with the default stack (or the user's override), smallest working version first, and run it locally. On Cloudflare, pin that `account_id` in the wrangler config with a comment naming the account (not logged in yet: leave it for the first deploy).
 7. **Check:** `grep -ln "{{" *.md docs/*.md` lists only this file and `docs/HOSTING.md`; the app runs locally with the dev command.
 8. **Delete this file.** Then tell the user how to run it, anything they must do first (e.g. create an AI key with a spend limit), what's next, and that saying "deploy" takes it live.
 

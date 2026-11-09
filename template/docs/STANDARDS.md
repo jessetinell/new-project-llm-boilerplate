@@ -41,6 +41,7 @@ End every response with:
 - **Web:** Next.js.
 - **Native app:** Flutter.
 - **Hosting:** Cloudflare (sometimes Vercel). Manage the live environment with the platform's CLI (`wrangler`, `vercel`). **Always ask the user before deploying** or changing anything live (deploys, remote migrations, secrets, DNS).
+- **Cloudflare accounts:** run cross-account commands outside the project folder with `CLOUDFLARE_ACCOUNT_ID`. Moving a project to another account needs the user's confirmation and a full move: D1/R2/KV, secrets, Access, URLs, then deleting the old resources.
 - **AI:** the provider's official SDK and its current best model. For agents, prefer hosted agent infrastructure and skills over hand-written agent loops.
 - **Tests:** the runtime's built-in test runner. No framework unless it's needed.
 
@@ -57,10 +58,10 @@ Every project starts local: get it running on this machine fast, with no hosting
 
 **First deploy:** the user saying "deploy" approves every step below (never anything destructive), so don't ask again step by step. Batch what only the human can do (login, secret values, dashboard limits, plan upgrades) into as few messages as possible, with exact commands or clicks.
 
-1. **Access:** the platform CLI is installed and logged in (`wrangler whoami`, `vercel whoami`).
-2. **Resources:** create with the CLI whatever the app uses locally (project, database, storage, queues, crons) and wire it into config.
-3. **Secrets:** into the platform's secret store. Generate random ones straight into it; for keys the user holds, give them the command.
-4. **Lock it down:** apply Auth & secrets; if `docs/BRIEF.md` says private, it's behind access control from the first deploy.
+1. **Login:** the platform CLI is installed and logged in (`wrangler whoami`, `vercel whoami`). On Cloudflare, `account_id` is pinned in the wrangler config (if `wrangler whoami` lists several accounts, ask which); never deploy without it.
+2. **Resources:** create with the CLI whatever the app uses locally (project, database, storage, queues, crons) and wire it into config. On a new Cloudflare account, the human first enables R2 and Zero Trust in the dashboard.
+3. **Lock it down:** apply Auth & secrets; if `docs/BRIEF.md` says private, it's behind access control from the first deploy.
+4. **Secrets:** into the platform's secret store. Generate random ones straight into it; for keys the user holds, give them the command. Until Access is on, a new deploy is public: set no paid secrets (API keys) before then.
 5. **Cost:** nothing paid goes live until the dashboard ceilings in `docs/COST_CAUTIONS.md` are set and its worst case is current.
 6. **Ship:** remote migrations, deploy, then check the main flow on the live URL. Use the platform's default URL; a custom domain only if asked.
 7. **Record it:** fill `docs/HOSTING.md` (a link to every service and dashboard, numbered one-time human steps, exact commands), the deploy command in `AGENTS.md`, and the hard ceilings in `docs/COST_CAUTIONS.md`. Report the live URL and anything left for the human.

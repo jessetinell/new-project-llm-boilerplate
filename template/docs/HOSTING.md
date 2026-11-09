@@ -2,19 +2,21 @@
 
 <!-- Not deployed yet. Filled at the first deploy: see docs/STANDARDS.md → Local first, deploy on request. Remove this line then. -->
 
+**Account:** {{account name}} ({{account_id}})
+
 ## Links
 
 | | |
 |---|---|
 | App | {{live URL}} |
-| Hosting project | {{Cloudflare / Vercel dashboard link}} |
+| Hosting project | https://dash.cloudflare.com/{{account_id}}/{{path}} |
 | Internal hosting dashboard | https://cf.jessetinell.com/ |
-| Database | {{link}} |
-| Storage | {{link}} |
-| Auth | {{link}} |
+| Database | https://dash.cloudflare.com/{{account_id}}/{{path}} |
+| Storage | https://dash.cloudflare.com/{{account_id}}/{{path}} |
+| Auth | https://one.dash.cloudflare.com/{{account_id}}/{{path}} |
 | AI keys | {{link}} |
 | AI spend limits | {{link}} |
-| Logs / monitoring | {{link}} |
+| Logs / monitoring | https://dash.cloudflare.com/{{account_id}}/{{path}} |
 
 ## One-time setup
 
