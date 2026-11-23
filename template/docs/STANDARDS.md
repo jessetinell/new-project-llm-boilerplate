@@ -45,6 +45,12 @@ End every response with:
 - **AI:** the provider's official SDK and its current best model. For agents, prefer hosted agent infrastructure and skills over hand-written agent loops.
 - **Tests:** the runtime's built-in test runner. No framework unless it's needed.
 
+## Android updates over wireless ADB
+
+Reconnect the target device only when the user requests an on-device update. Use the existing pairing on the same Wi-Fi. If discovery does not connect it, use `adb connect <ip>:<connection-port>` from the device’s Wireless debugging screen. If wireless debugging is off, the user must enable it first.
+
+After every update and its device checks, including failed or cancelled attempts, run `adb disconnect <target-serial-or-ip:port>` for each wireless device used. Verify with `adb devices -l`. Keep the pairing for the next update and leave unrelated devices alone.
+
 ## Local first, deploy on request
 
 Every project starts local: get it running on this machine fast, with no hosting, deploys or cloud resources. It goes live only when the user says "deploy"; then you do the whole deploy.
